@@ -46,6 +46,8 @@
 #include "FreeRTOS.h"
 #include "timers.h"
 
+#include "sdkconfig.h"
+
 struct tcpip_adapter_pbuf {
     struct pbuf_custom  pbuf;
 
@@ -1217,13 +1219,13 @@ esp_err_t tcpip_adapter_set_hostname(tcpip_adapter_if_t tcpip_if, const char *ho
 {
 #if LWIP_NETIF_HOSTNAME
     struct netif *p_netif;
-    static char hostinfo[TCPIP_ADAPTER_IF_MAX][TCPIP_HOSTNAME_MAX_SIZE + 1];
+    static char hostinfo[TCPIP_ADAPTER_IF_MAX][CONFIG_TCPIP_ADAPTER_HOSTNAME_MAX_LENGTH + 1];
 
     if (tcpip_if >= TCPIP_ADAPTER_IF_MAX || hostname == NULL) {
         return ESP_ERR_TCPIP_ADAPTER_INVALID_PARAMS;
     }
 
-    if (strlen(hostname) > TCPIP_HOSTNAME_MAX_SIZE) {
+    if (strlen(hostname) > CONFIG_TCPIP_ADAPTER_HOSTNAME_MAX_LENGTH) {
         return ESP_ERR_TCPIP_ADAPTER_INVALID_PARAMS;
     }
 
