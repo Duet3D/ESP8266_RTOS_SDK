@@ -609,7 +609,6 @@ esp_interface_t tcpip_adapter_get_esp_if(void *dev);
  */
 esp_err_t tcpip_adapter_get_sta_list(wifi_sta_list_t *wifi_sta_list, tcpip_adapter_sta_list_t *tcpip_sta_list);
 
-#define TCPIP_HOSTNAME_MAX_SIZE    32
 /**
  * @brief  Set the hostname to the interface
  *
